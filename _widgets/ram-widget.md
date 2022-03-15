@@ -5,29 +5,38 @@ layout: page
 
 This widget shows the RAM usage. When clicked another widget appears with more detailed information:
 
-![screenshot]({{'/assets/img/screenshots/ram-widget.gif' | relative_url }}){:.center-image}
+![screenshot](../awesome-wm-widgets/assets/img/widgets/screenshots/ram-widget/out.gif)
+
+Note: this widget is compatible with Awesome v4.3+, as it is using [awful.popup](https://awesomewm.org/doc/api/classes/awful.popup.html)
+
+## Customization
+
+It is possible to customize widget by providing a table with all or some of the following config parameters:
+
+| Name | Default | Description |
+|---|---|---|
+| `color_used` | `beautiful.bg_urgent` | Color for used RAM |
+| `color_free` | `beautiful.fg_normal` | Color for free RAM |
+| `color_buf`  | `beautiful.border_color_active` | Color for buffers/cache |
+| `widget_show_buf`  | `false` | Whether to display buffers/cache separately in the tray widget. If `false`, buffers/cache are considered free RAM. |
+| `timeout`    | 1 | How often (in seconds) the widget refreshes |
 
 ## Installation
 
-1. Clone this repo under **~/.config/awesome/**
+Please refer to the [installation](https://github.com/streetturtle/awesome-wm-widgets#installation) section of the repo.
 
-    ```bash
-    git clone https://github.com/streetturtle/awesome-wm-widgets.git ~/.config/awesome/
-    ```
+Clone repo, include widget and use it in **rc.lua**:
 
-1. Require spotify-widget at the beginning of **rc.lua**:
+```lua
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+...
+s.mytasklist, -- Middle widget
+	{ -- Right widgets
+    	layout = wibox.layout.fixed.horizontal,
+		...
+		ram_widget(),
+    		...
+	}
+	...
+```
 
-    ```lua
-    local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
-    ```
-
-1. Add widget to the tasklist:
-
-    ```lua
-    s.mytasklist, -- Middle widget
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            ...
-            ram_widget,
-            ...
-    ```
